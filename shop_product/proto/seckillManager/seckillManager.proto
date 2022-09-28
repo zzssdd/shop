@@ -1,0 +1,73 @@
+syntax="proto3";
+option go_package="./proto/seckillManager";
+package seckill;
+
+service Seckills{
+  rpc SeckillList (SeckillsRequest) returns(SeckillsResponse){}
+  rpc SecKillAdd (Seckill) returns(MsgResponse){}
+  rpc SeckillDel (IdRequest) returns(MsgResponse){}
+  rpc SeckillDoEdit (SeckillEdit) returns(MsgResponse){}
+  rpc SeckillInfo (IdRequest) returns(SeckillResponse){}
+}
+
+message SeckillProduct{
+  int32 id=1;
+  string name=2;
+  float price=3;
+  int32 num=4;
+  string startTime=5;
+  string endTime=6;
+  string pic=7;
+  float secPrice=8;
+  string secDesc=9;
+  int32 pid=10;
+}
+
+message SeckillResponse{
+  SeckillProduct info=1;
+  int32 code=2;
+  string msg=3;
+}
+
+message IdRequest{
+  int32 id=1;
+}
+
+message MsgResponse{
+  int32 code=1;
+  string msg=2;
+}
+
+message Seckill{
+  int32 pid=1;
+  int32 num=2;
+  string startTime=3;
+  string endTime=4;
+  string pic=6;
+  float secPrice=7;
+  string secDesc=8;
+}
+
+message SeckillEdit{
+  int32 id=1;
+  int32 pid=2;
+  int32 num=3;
+  string startTime=4;
+  string endTime=5;
+  string pic=6;
+  float secPrice=7;
+  string secDesc=8;
+}
+
+
+message SeckillsResponse{
+  int32 code=1;
+  string msg=2;
+  int32 count=3;
+  repeated SeckillProduct list=4;
+}
+
+message SeckillsRequest{
+  int32 currentPage=1;
+  int32 pageSize=2;
+}

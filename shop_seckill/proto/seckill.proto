@@ -1,0 +1,17 @@
+syntax="proto3";
+option go_package="./proto";
+package seckill;
+
+service DoSeckill{
+  rpc SeckillAdd (AddRequest) returns (AddResponse){}
+}
+
+message AddRequest{
+  int32 Id=1;
+  string email=2;
+}
+
+message AddResponse{
+  int32 code=1;
+  string msg=2;
+}

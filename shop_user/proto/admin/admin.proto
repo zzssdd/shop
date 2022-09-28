@@ -1,0 +1,44 @@
+syntax="proto3";
+option go_package="./proto/admin";
+package admin;
+
+service Admin{
+  rpc Login(LoginRequest) returns (Response){}
+  rpc UserList(ListRequest) returns(ListResponse){}
+  rpc UserDel(DelRequest) returns(Response){}
+}
+
+message DelRequest{
+  int32 id=1;
+}
+
+message User{
+  int32 id=1;
+  string email=2;
+  string desc=3;
+  int32 status=4;
+  string create_time=5;
+}
+
+message ListResponse{
+   int32 code=1;
+   string msg=2;
+   repeated User user=3;
+   int32 total=4;
+
+}
+
+message ListRequest{
+  int32 currentPage=1;
+  int32 pageSize=2;
+}
+
+message LoginRequest{
+  string name=1;
+  string password=2;
+}
+
+message Response{
+  int32 code=1;
+  string msg=2;
+}

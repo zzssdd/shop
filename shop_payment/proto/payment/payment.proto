@@ -1,0 +1,48 @@
+syntax="proto3";
+
+option go_package="./proto/payment";
+
+package payment;
+
+service Payment{
+  rpc PaymentList(ListRequest) returns (ListResponse);
+  rpc PaymentAdd(AddRequest) returns(Response);
+  rpc PaymentDel(DelRequest) returns(Response);
+}
+
+message DelRequest{
+  int32 id=1;
+}
+
+message Response{
+   int32 code=1;
+   string msg=2;
+}
+
+message AddRequest{
+  string email=1;
+  int32 pid=2;
+  float buyPrice=3;
+}
+
+message  PaymentInfo{
+  int32 id=1;
+  int32 pid=2;
+  string name=3;
+  float buyPrice=4;
+  string pic=5;
+  string addTime=6;
+}
+
+message ListResponse{
+  repeated PaymentInfo payments=1;
+  int32 code=2;
+  string msg=3;
+  int32 total=4;
+}
+
+message ListRequest{
+  string email=1;
+  int32 pageSize=2;
+  int32 currentPage=3;
+}
