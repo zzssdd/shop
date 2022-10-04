@@ -12,6 +12,6 @@ func SendEmail(addr string, data string) error {
 	e.To = []string{addr}
 	e.Subject = "用户注册验证"
 	e.Text = []byte(data)
-	err := e.Send("smtp.qq.com:587", smtp.PlainAuth("", "1654622146@qq.com", "afhncxjpsukidgif", "smtp.qq.com"))
+	err := e.Send("smtp.qq.com:587", smtp.PlainAuth("", "1654622146@qq.com", "授权码", "smtp.qq.com"))
 	return err
 }
